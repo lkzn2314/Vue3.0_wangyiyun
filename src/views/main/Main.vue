@@ -1,5 +1,8 @@
 <template>
-    <WebHeader />
+    <div>
+        <WebHeader />
+        <router-view/>
+    </div>
 </template>
 
 <script lang='ts'>

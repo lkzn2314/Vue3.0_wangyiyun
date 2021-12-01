@@ -4,29 +4,57 @@
             <div class="header-left">
                 <a class="logo sprite_01" href="#/">网易云音乐</a>
                 <div class="select-list">
-                    <div v-for="(item) in headerLinks" :key={item}>
-                        <div className="select-item" key={item.title}>
-                            <a>{{item.title}}</a>
+                    <div class="select-item" v-for="(item, index) in headerLinks" :key={item}
+                    :class="{active: currentIndex === index}" @click="selectItemClick(item,index)">
+                        <a>
+                            {{item.title}}
                             <i class="icon sprite_01" />
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
+
+            <div class="header-right">
+                <el-input
+                    class="search"
+                    placeholder="音乐/视频/电台/用户"
+                    :prefix-icon="Search">
+                </el-input>
+                <div class="center">创作者中心</div>
+                <div class="login">登录</div>
+            </div>
         </div>
+        <div class="divider"/>
     </div>
 </template>
 
 <script lang='ts'>
+    import { ref } from 'vue';
+    import { useRouter } from 'vue-router';
     import { headerLinks } from '@/network/local-data';
+    import { Search } from '@element-plus/icons';
+
     export default {
         name: 'WehHeader',
         components: {
 
         },
         setup() {
-            console.log(headerLinks);
+            const router = useRouter();
+            let currentIndex = ref(0);
+
+            const selectItemClick = (item:{[key: string]: string}, idx: number) => {
+                currentIndex.value = idx;
+                router.push(item.link);
+            };
+
+            return {
+                currentIndex,
+                headerLinks,
+                Search,
+                selectItemClick
+            };
         }
-        
     };
 </script>
 
@@ -65,8 +93,79 @@
                         padding: 0 20px;
                         color: #ccc;
                     }
+
+                    &:hover a {
+                        background: #000;
+                        color: #fff;
+                        text-decoration: none;
+                    }
+                }
+
+                .active {
+                    background: #000;
+                    color: #fff;
+                    text-decoration: none;
+
+                    .icon {
+                        position: absolute;
+                        left: 50%;
+                        bottom: -1px;
+                        display: inline-block;
+                        width: 12px;
+                        height: 7px;
+                        transform: translateX(-50%);
+                        background-position: -226px 0;
+                        }
                 }
             }
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            color: #ccc;
+            font-size: 12px;
+
+            .search {
+                width: 158px;
+                height: 32px;
+                border-radius: 16px;
+
+          /deep/.el-input__inner {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 16px;
+
+                    &::placeholder {
+                        font-size: 12px;
+                    }
+                }
+
+            }
+
+            .center {
+                width: 90px;
+                height: 32px;
+                line-height: 32px;
+                text-align: center;
+                border: 1px solid #666;
+                border-radius: 18px;
+                margin: 0 16px;
+                cursor: pointer;
+            }
+
+            .login {
+                width: 45px;
+                height: 32px;
+                line-height: 32px;
+                text-align: center;
+                cursor: pointer;
+            }
+        }
+
+        .divider {
+            height: 5px;
+            background-color: #C20C0C;
         }
     }
 </style>
