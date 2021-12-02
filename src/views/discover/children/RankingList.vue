@@ -1,17 +1,16 @@
 <template>
-    <WebHeader />
-    <router-view/>
+    <div>
+        Ranking
+    </div>
 </template>
 
 <script lang='ts'>
-    import WebHeader from '@/components/web-header/WebHeader.vue';
-
     export default {
-        name: 'Main',
+        name: '',
         components: {
-            WebHeader
+
         },
-        setup(): any {
+        setup() {
             return {
 
             };
@@ -20,5 +19,5 @@
 </script>
 
 <style scoped>
-    
+
 </style>

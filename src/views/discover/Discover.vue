@@ -1,14 +1,17 @@
 <template>
-    <div>
-      你好
-    </div>
+    <DiscoverHeader />
+    <router-view />
 </template>
 
 <script lang="ts">
-export default {
-  name: '',
-  components: {},
-};
+    import DiscoverHeader from '@/components/discover-header/DiscoverHeader.vue';
+
+    export default {
+        name: '',
+        components: {
+            DiscoverHeader
+        },
+    };
 </script>
 
 <style scoped></style>
