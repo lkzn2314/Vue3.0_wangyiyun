@@ -4,7 +4,7 @@
 </template>
 
 <script lang="ts">
-    import DiscoverHeader from '@/components/discover-header/DiscoverHeader.vue';
+    import DiscoverHeader from './DiscoverHeader.vue';
 
     export default {
         name: '',

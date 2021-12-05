@@ -1,11 +1,11 @@
 import { createStore } from 'vuex';
-import moduleRecommend from './modules/recommend';
-import moduleMusiclist from './modules/musiclist';
+import moduleRecommend from './modules/recommendModule';
+import moduleMusiclist from './modules/musiclistModule';
 
 const store = createStore({
     modules: {
-        moduleRecommend,
-        moduleMusiclist
+        recommend: moduleRecommend,
+        musiclist: moduleMusiclist
     }
 });
 

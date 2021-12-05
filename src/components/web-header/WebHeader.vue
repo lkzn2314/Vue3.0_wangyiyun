@@ -98,6 +98,7 @@
                         background: #000;
                         color: #fff;
                         text-decoration: none;
+                        cursor: pointer;
                     }
                 }
 
