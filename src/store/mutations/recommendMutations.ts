@@ -1,6 +1,5 @@
 import {
-    CHANGE_BANNERS
-    // CHANGE_HOT_RECOMMEND,
+    CHANGE_HOT_RECOMMEND,
     // CHANGE_NEW_DISC,
     // CHANGE_UP_RANKING,
     // CHANGE_NEW_RANKING,
@@ -8,7 +7,9 @@ import {
 } from '../mutation-types';
 
 export default {
-    [CHANGE_BANNERS](state: any, banners: any) {
-        state.banners = banners;
+
+    [CHANGE_HOT_RECOMMEND](state: any, hotRecommends: any) {
+        state.hotRecommends = hotRecommends;
     }
+
 };

@@ -3,7 +3,6 @@ import recommendMutations from '../mutations/recommendMutations';
 
 const module = {
     state: () => ({
-        banners: [],
         hotRecommends: []
     }),
     actions: recommendActions,

@@ -7,7 +7,7 @@
     import DiscoverHeader from './DiscoverHeader.vue';
 
     export default {
-        name: '',
+        name: 'Discover',
         components: {
             DiscoverHeader
         },

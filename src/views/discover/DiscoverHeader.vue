@@ -12,7 +12,7 @@
     import { dicoverMenu } from '@/network/local-data';
     
     export default {
-        name: '',
+        name: 'DiscoverHeader',
         components: {
 
         },

@@ -72,16 +72,21 @@
                 }
             }
 
-            /deep/.el-carousel__indicators {
-                position: relative;
-                top: -45px;
-                left: 0;
-                z-index: 99;
+            /deep/.el-carousel {
+                height: 100%;
+                overflow: hidden;
 
-                .el-carousel__indicator {
-                    &.is-active {
-                        .el-carousel__button {
-                            background-color: red;
+                .el-carousel__indicators {
+                    position: relative;
+                    top: -45px;
+                    left: 0;
+                    z-index: 99;
+
+                    .el-carousel__indicator {
+                        &.is-active {
+                            .el-carousel__button {
+                                background-color: red;
+                            }
                         }
                     }
                 }

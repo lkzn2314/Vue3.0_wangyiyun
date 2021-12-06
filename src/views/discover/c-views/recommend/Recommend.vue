@@ -43,7 +43,6 @@
             .recommend-left {
                 padding: 20px;
                 width: 729px;
-                background-color: pink;
             }
         }
     }
