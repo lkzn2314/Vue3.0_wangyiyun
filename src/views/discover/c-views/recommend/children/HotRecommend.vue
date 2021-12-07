@@ -1,9 +1,9 @@
 <template>
     <div class="hot-recommend-wrapper">
-        <HeaderLine title="热门推荐" :tabs="hotPlaylistCategory.slice(0,5)" :to="discover/playlist"/>
+        <HeaderLine title="热门推荐" :tabs="hotPlaylistCategory.slice(0,5)" toPath="playlist"/>
 
         <div class="recommend-list">
-
+            <SongsCover v-for="item in hotRecommends" :key="item" :info="item"/>
         </div>
     </div>
 </template>
@@ -12,11 +12,13 @@
     import { useStore } from 'vuex';
     import { computed, onMounted } from '@vue/runtime-core';
     import HeaderLine from '@/components/header-line/HeaderLine.vue';
+    import SongsCover from '@/components/songs-cover/SongsCover.vue';
 
     export default {
         name: 'HotRecommend',
         components: {
-            HeaderLine
+            HeaderLine,
+            SongsCover
         },
         setup() {
             const store = useStore();

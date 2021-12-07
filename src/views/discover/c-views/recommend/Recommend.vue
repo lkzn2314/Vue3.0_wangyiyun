@@ -5,7 +5,7 @@
         <div class="content wrap-v2">
             <div class="recommend-left">
                 <HotRecommend />
-
+                <NewDisc />
             </div>
 
         </div>
@@ -15,12 +15,14 @@
 <script lang='ts'>
     import TopBanners from './children/Banners.vue';
     import HotRecommend from './children/HotRecommend.vue';
+    import NewDisc from './children/NewDisc.vue';
 
     export default {
         name: 'Recommend',
         components: {
             TopBanners,
-            HotRecommend
+            HotRecommend,
+            NewDisc
         },
         setup() {
             

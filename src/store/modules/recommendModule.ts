@@ -3,7 +3,8 @@ import recommendMutations from '../mutations/recommendMutations';
 
 const module = {
     state: () => ({
-        hotRecommends: []
+        hotRecommends: [],
+        newDiscs: []
     }),
     actions: recommendActions,
     mutations: recommendMutations

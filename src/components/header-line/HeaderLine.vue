@@ -12,7 +12,7 @@
 
         </div>
 
-        <router-link class="right" to="to">
+        <router-link class="right" :to='toPath'>
             更多
             <i className="icon sprite_02" />
         </router-link>
@@ -22,13 +22,10 @@
 <script lang='ts'>
     export default {
         name: 'HeaderLine',
-        components: {
-
-        },
         props: {
             title: String,
             tabs: Array,
-            to: String
+            toPath: String
         },
         setup() {
             return {
