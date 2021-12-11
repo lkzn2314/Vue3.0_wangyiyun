@@ -4,7 +4,10 @@ import recommendMutations from '../mutations/recommendMutations';
 const module = {
     state: () => ({
         hotRecommends: [],
-        newDiscs: []
+        newDiscs: [],
+        upRankings: {},
+        newRankings: {},
+        originRankings: {}
     }),
     actions: recommendActions,
     mutations: recommendMutations

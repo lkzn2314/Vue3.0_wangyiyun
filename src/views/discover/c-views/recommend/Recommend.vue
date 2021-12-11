@@ -6,6 +6,11 @@
             <div class="recommend-left">
                 <HotRecommend />
                 <NewDisc />
+                <Ranking />
+            </div>
+
+            <div class="recommend-right">
+                <Login />
             </div>
 
         </div>
@@ -16,13 +21,17 @@
     import TopBanners from './children/Banners.vue';
     import HotRecommend from './children/HotRecommend.vue';
     import NewDisc from './children/NewDisc.vue';
+    import Ranking from './children/Ranking.vue';
+    import Login from './children/Login.vue';
 
     export default {
         name: 'Recommend',
         components: {
             TopBanners,
             HotRecommend,
-            NewDisc
+            NewDisc,
+            Ranking,
+            Login
         },
         setup() {
             
@@ -44,7 +53,13 @@
 
             .recommend-left {
                 padding: 20px;
-                width: 729px;
+                width: 689px;
+            }
+
+            .recommend-right {
+                width: 250px;
+                border: 1px solid #d3d3d3;
+                border-width: 0 1px;
             }
         }
     }
