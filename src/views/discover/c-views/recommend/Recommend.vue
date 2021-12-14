@@ -11,8 +11,8 @@
 
             <div class="recommend-right">
                 <Login />
+                <ArtistAnchor />
             </div>
-
         </div>
     </div>
 </template>
@@ -23,6 +23,7 @@
     import NewDisc from './children/NewDisc.vue';
     import Ranking from './children/Ranking.vue';
     import Login from './children/Login.vue';
+    import ArtistAnchor from './children/ArtistAnchor.vue';
 
     export default {
         name: 'Recommend',
@@ -31,7 +32,8 @@
             HotRecommend,
             NewDisc,
             Ranking,
-            Login
+            Login,
+            ArtistAnchor
         },
         setup() {
             
