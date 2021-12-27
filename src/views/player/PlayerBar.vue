@@ -3,25 +3,24 @@
         <div class="content wrap-v2">
             <div class="control">
                 <div class="prev playbar_sprite"  />
-                <div class="play playbar_sprite"  />
+                <div class="play playbar_sprite" :style="{backgroundPositionY: isPlaying ? '-165px' : '-204px'}"
+                    @click="playMusic"/>
                 <div class="next playbar_sprite"  />
             </div>
 
             <div class="play-info">
                 <a href="#/" class="image" >
-                    <img src="http://s4.music.126.net/style/web2/img/default/default_album.jpg?limit=34x34" alt="" />
+                    <img :src="formatImgSize(currentSong?.al?.picUrl || 'http://s4.music.126.net/style/web2/img/default/default_album.jpg?limit=34x34', 34)"  alt="" />
                 </a>
                 <div class="info">
                     <div class="song">
-                        <span>未知歌曲</span>
-                        <span class="singer-name">singer</span>
+                        <span>{{currentSong?.name ||未知歌曲}}</span>
+                        <span class="singer-name">{{currentSong?.ar?.[0]?.name || '未知歌手'}}</span>
                         <i class="link playbar_sprite" />
                         <a href="#/"> </a>
                     </div>
                     <div class="progress">
                         <el-slider v-model="value3" :show-tooltip="false" />
-                        <!-- <Slider tooltipVisible={false} value={progress} onChange={value => sliderChange(value)}
-                            onAfterChange={value => sliderAfterChange(value)} /> -->
                         <span class="time">
                             <span class="now-time">02:00</span>
                             <span class="divider">/</span>
@@ -45,7 +44,7 @@
                         <button class="btn loop playbar_sprite" />
                     </el-tooltip>
                     <el-tooltip content="播放列表" color='#191919' placement="top">
-                        <button class="btn playlist playbar_sprite" >5</button>
+                        <button class="btn playlist playbar_sprite" >{{playList?.length}}</button>
                     </el-tooltip>
                 </div>
             </div>
@@ -55,20 +54,27 @@
             <i class="lock playbar_sprite" :style="{backgroundPositionX: isFixedPos ? '-100px' : '-80px'}"
             @click="changeLockClick"/>
         </div>
+
+        <audio ref="audioRef" />
     </div>
 </template>
 
 <script lang='ts'>
-    import { onMounted, ref } from 'vue';
+    import { computed, onMounted, ref, watch } from 'vue';
+    import { useStore } from 'vuex';
+    import { ElMessage } from 'element-plus';
+    import { formatImgSize, getSongPlay } from '@/utils/format';
 
     export default {
         name: 'PlayerBar',
-        components: {
-
-        },
         setup() {
+            const store = useStore();
+            const audioRef: any = ref(null);
             const isShowBar = ref(false);
             const isFixedPos = ref(true);
+            const isPlaying = ref(false);
+            const currentSong: any = computed(() => store.state.player.currentSong);
+            const playList = computed(() => store.state.player.playList);
 
             onMounted(() => {
                 window.addEventListener('mousemove', (e: any) => {
@@ -76,14 +82,41 @@
                 });
             });
 
+            watch(() => currentSong.value.id, (newSongId: number) => {
+                audioRef.value.src = getSongPlay(newSongId);
+                audioRef.value.play().then((res: any) => {
+                    isPlaying.value = true;
+                }, (err: any) => {
+                    isPlaying.value = false;
+                });
+            });
+
             const changeLockClick = () => {
                 isFixedPos.value = !isFixedPos.value;
             };
 
+            const playMusic = () => {
+                isPlaying.value ? audioRef.value.pause() : audioRef.value.play().then((res: any) => {
+                    // console.log(1);
+                }, (err: any) => {
+                    ElMessage.info({
+                        key: 'lyric',
+                        message: '对不起，该歌曲没有版权'
+                    });
+                });
+                isPlaying.value = !isPlaying.value;
+            };
+
             return {
+                audioRef,
                 isShowBar,
                 isFixedPos,
-                changeLockClick
+                isPlaying,
+                formatImgSize,
+                currentSong,
+                playList,
+                changeLockClick,
+                playMusic
             };
         }
     };
@@ -146,7 +179,7 @@
                     width: 36px;
                     height: 36px;
                     margin: 0 8px;
-                    background-position: 0 -165px;
+                    background-position: 0 -204px;
                     // background-position: 0 ${props => props.isPlaying ? "-165px" : "-204px"};
 
                     &:hover {

@@ -20,7 +20,7 @@
                 <div class="info">
                 <span class="name text-nowrap">{{item.name}}</span>
                 <div class="operate">
-                    <button class="btn sprite_02 play"  />
+                    <button class="btn sprite_02 play" @click="playSongsClick(item.id)"/>
                     <button class="btn sprite_icon2 addto" />
                     <button class="btn sprite_02 favor" />
                 </div>
@@ -36,6 +36,7 @@
 
 <script lang='ts'>
     import { formatImgSize } from '@/utils/format';
+    import { useStore } from 'vuex';
 
     export default {
         name: 'TopRanking',
@@ -43,8 +44,15 @@
             info: Object
         },
         setup() {
+            const store = useStore();
+
+            const playSongsClick = (songId: string) => {
+                store.dispatch('getCurrentSongAction', songId);
+            };
+
             return {
-                formatImgSize
+                formatImgSize,
+                playSongsClick
             };
         }
     };
