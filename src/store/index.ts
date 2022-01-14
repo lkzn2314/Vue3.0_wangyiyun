@@ -5,12 +5,12 @@ import mudulePlaylist from './modules/playlistModule';
 import modulePlayer from './modules/playerModule';
 
 const store = createStore({
-    modules: {
-        recommend: moduleRecommend,
-        musiclist: moduleMusiclist,
-        playlist: mudulePlaylist,
-        player: modulePlayer
-    }
+  modules: {
+    recommend: moduleRecommend,
+    musiclist: moduleMusiclist,
+    playlist: mudulePlaylist,
+    player: modulePlayer,
+  },
 });
 
 export default store;

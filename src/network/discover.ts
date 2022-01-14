@@ -2,35 +2,35 @@ import request from './request';
 
 // 轮播图
 export function getBanners() {
-    return request({
-        url: '/banner'
-    });
+  return request({
+    url: '/banner',
+  });
 }
 
 // 热门推荐
 export function getHotRecommends(limit?: number) {
-    return request({
-        url: '/personalized',
-        params: {
-            limit
-        }
-    });
+  return request({
+    url: '/personalized',
+    params: {
+      limit,
+    },
+  });
 }
 
 // 热门歌单分类
 export function getHotPlaylistCategory() {
-    return request({
-        url: '/playlist/hot'
-    });
+  return request({
+    url: '/playlist/hot',
+  });
 }
 
 // 首页新碟上架
 export function getHomepageNewDiscs() {
-    return request({
-        url: '/album/newest'
-    });
+  return request({
+    url: '/album/newest',
+  });
 }
-  
+
 // 新碟上架
 /* 可选参数 :
 limit: 取出数量 , 默认为 50
@@ -40,52 +40,52 @@ type : new:全部 hot:热门,默认为 new
 year : 年,默认本年
 month : 月,默认本月 */
 export function getNewDiscs(limit = 50, page = 1, type: string, area = 'ALL') {
-    return request({
-        url: '/top/album',
-        params: {
-        offset: (page - 1) * limit,
-        limit,
-        type,
-        area
-        }
-    });
+  return request({
+    url: '/top/album',
+    params: {
+      offset: (page - 1) * limit,
+      limit,
+      type,
+      area,
+    },
+  });
 }
 
 // 榜单详情（此为新接口，与获取歌单详情接口一致）
 export function getRankings(id: any) {
-    return request({
-        url: '/playlist/detail',
-        params: {
-            id
-        }
-    });
+  return request({
+    url: '/playlist/detail',
+    params: {
+      id,
+    },
+  });
 }
 
 // 歌手
 export function getArtists(limit: number) {
-    return request({
-        url: '/artist/list',
-        params: {
-            limit
-        }
-    });
+  return request({
+    url: '/artist/list',
+    params: {
+      limit,
+    },
+  });
 }
 
 // 所有榜单
 export function getToplist() {
-    return request({
-        url: '/toplist'
-    });
+  return request({
+    url: '/toplist',
+  });
 }
 
 // 歌单评论
 export function getPlaylistComment(playlistId: any) {
-    return request({
-        url: '/comment/playlist',
-        params: {
-            id: playlistId
-        }
-    });
+  return request({
+    url: '/comment/playlist',
+    params: {
+      id: playlistId,
+    },
+  });
 }
 
 // 所有歌单
@@ -94,20 +94,20 @@ cat: tag, 比如 " 华语 "、" 古风 " 、" 欧美 "、" 流行 ", 默认为 "
 limit: 取出歌单数量 , 默认为 50
 offset: 偏移数量 , 用于分页 , 如 :( 评论页数 -1)*50, 其中 50 为 limit 的值 */
 export function getAllPlaylist(page = 1, limit = 50, cat = '全部', order = 'hot') {
-    return request({
-        url: '/top/playlist',
-        params: {
-            offset: (page - 1) * limit,
-            limit,
-            cat,
-            order
-        }
-    });
+  return request({
+    url: '/top/playlist',
+    params: {
+      offset: (page - 1) * limit,
+      limit,
+      cat,
+      order,
+    },
+  });
 }
 
 // 所有歌单分类
 export function getAllPlaylistCategory() {
-    return request({
-        url: '/playlist/catlist'
-    });
+  return request({
+    url: '/playlist/catlist',
+  });
 }

@@ -1,7 +1,7 @@
 const module = {
-    state: () => ({
-        toplist: [],
-    })
+  state: () => ({
+    toplist: [],
+  }),
 };
 
 export default module;

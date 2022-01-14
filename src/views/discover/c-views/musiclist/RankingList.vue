@@ -1,23 +1,15 @@
 <template>
-    <div>
-        Ranking
-    </div>
+  <div>Ranking</div>
 </template>
 
-<script lang='ts'>
-    export default {
-        name: '',
-        components: {
-
-        },
-        setup() {
-            return {
-
-            };
-        }
-    };
+<script lang="ts">
+export default {
+  name: '',
+  components: {},
+  setup() {
+    return {};
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
