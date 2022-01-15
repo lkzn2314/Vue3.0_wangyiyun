@@ -35,9 +35,6 @@ export default {
     Login,
     ArtistAnchor,
   },
-  setup() {
-    return {};
-  },
 };
 </script>
 

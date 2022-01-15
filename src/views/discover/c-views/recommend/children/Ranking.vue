@@ -12,7 +12,7 @@
 <script lang="ts">
 import HeaderLine from '@/components/header-line/HeaderLine.vue';
 import TopRanking from '@/components/top-ranking/TopRanking.vue';
-import { computed, onMounted } from '@vue/runtime-core';
+import { onMounted, computed } from 'vue';
 import { useStore } from 'vuex';
 
 export default {

@@ -1,7 +1,6 @@
 <template>
   <div class="disc-wrapper">
     <HeaderLine title="新碟上架" toPath="album" />
-
     <div class="centent">
       <i class="left arrow sprite_02" @click="() => carouselRef.prev()" />
       <i class="right arrow sprite_02" @click="() => carouselRef.next()" />

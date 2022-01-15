@@ -13,6 +13,7 @@ module.exports = {
     browser: true,
     node: true,
     es6: true,
+    'vue/setup-compiler-macros': true
   },
   // 扩展风格
   'extends': [
