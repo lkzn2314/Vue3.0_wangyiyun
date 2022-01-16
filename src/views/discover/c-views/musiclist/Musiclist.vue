@@ -3,7 +3,10 @@
     <div class="left">
       <MusicRanking />
     </div>
-    <div class="right"></div>
+    <div class="right">
+      <RankingHeader />
+      <RankingDetail />
+    </div>
   </div>
 </template>
 
@@ -17,6 +20,8 @@ export default {
 import { onMounted } from 'vue';
 import { useStore } from 'vuex';
 import MusicRanking from './children/MusicRanking.vue';
+import RankingHeader from './children/RankingHeader.vue';
+import RankingDetail from './children/RankingDetail.vue';
 
 const store = useStore();
 

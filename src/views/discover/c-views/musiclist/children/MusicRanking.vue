@@ -1,7 +1,19 @@
 <template>
   <div class="musicRankingWrapper" v-if="toplist.length">
     <h2 class="special title">云音乐特色榜</h2>
-    <MusiclistRankingCover v-for="item in toplist?.slice(0, 4)" :key="item" :info="item" />
+    <MusiclistRankingCover
+      v-for="(item, index) in toplist?.slice(0, 4)"
+      :key="item.id"
+      :info="item"
+      :index="index"
+    />
+    <h2 className="media title">全球媒体榜</h2>
+    <MusiclistRankingCover
+      v-for="(item, index) in toplist?.slice(4)"
+      :key="item.id"
+      :info="item"
+      :index="index + 4"
+    />
   </div>
 </template>
 
@@ -12,7 +24,7 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
 import { useStore } from 'vuex';
 import MusiclistRankingCover from '@/components/musiclist-ranking-cover/MusiclistRankingCover';
 const store = useStore();

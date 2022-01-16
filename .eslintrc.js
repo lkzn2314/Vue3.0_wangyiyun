@@ -6,33 +6,27 @@ module.exports = {
     parser: 'babel-eslint',
     // 代码是 ECMAScript 模块
     sourceType: 'module',
-    ecmaVersion: 2020
+    ecmaVersion: 2020,
   },
   env: {
-     // 预定义的全局变量，这里是浏览器环境
+    // 预定义的全局变量，这里是浏览器环境
     browser: true,
     node: true,
     es6: true,
-    'vue/setup-compiler-macros': true
+    // 'vue/setup-compiler-macros': true,
   },
   // 扩展风格
-  'extends': [
-    'plugin:vue/vue3-essential',
-    'eslint:recommended',
-    '@vue/typescript/recommended'
-  ],
+  extends: ['plugin:vue/vue3-essential', 'eslint:recommended', '@vue/typescript/recommended'],
   // 规则的细节请到ESLint官方网站查看http://eslint.org/docs/rules/
   rules: {
-    "vue/no-unused-components": "off",
+    'vue/no-unused-components': 'off',
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'quotes': [
-      'error',
-      'single'
-    ],
-    'semi': [
-      'error',
-      'always'
-    ]
-  }
-}
+    quotes: ['error', 'single'],
+    semi: ['error', 'always'],
+  },
+  globals: {
+    defineProps: 'readonly',
+    defineEmits: 'readonly',
+  },
+};

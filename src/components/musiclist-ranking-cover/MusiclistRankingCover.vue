@@ -1,5 +1,8 @@
 <template>
-  <div class="wrapper">
+  <div
+    :class="['wrapper', currentIndex === index ? 'active' : '']"
+    @click="changeRankingClick(index, info?.id)"
+  >
     <img :src="formatImgSize(info?.coverImgUrl, 40)" alt="" />
     <div>
       <div class="name">{{ info?.name }}</div>
@@ -16,10 +19,19 @@ export default {
 
 <script lang="ts" setup>
 import { formatImgSize } from '@/utils/format';
-
-/* const props = defineProps({
+import { computed } from 'vue';
+import { useStore } from 'vuex';
+const store = useStore();
+const props = defineProps({
   info: Object,
-}); */
+  index: Number,
+});
+const currentIndex = computed(() => store.state.musiclist.currentIndex);
+
+const changeRankingClick = (index: number, playlistId: number) => {
+  store.dispatch('changeCurrentIndexAction', index);
+  store.dispatch('getRankingDetailAction', playlistId);
+};
 </script>
 
 <style lang="less" scoped>
@@ -28,6 +40,7 @@ import { formatImgSize } from '@/utils/format';
   width: 240px;
   height: 62px;
   padding: 10px 0 10px 20px;
+  box-sizing: border-box;
 
   &.active {
     background-color: #e6e6e6;
