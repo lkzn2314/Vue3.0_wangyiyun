@@ -1,5 +1,5 @@
 <template>
-  <div class="rankingDetailWrapper">
+  <div class="rankingDetailWrapper" v-if="toplist.length">
     <div class="head">
       <div class="title">
         歌曲列表
@@ -30,7 +30,7 @@
             <td>{{ index + 1 }}</td>
             <td class="text-nowrap">
               <img v-if="index < 3" :src="formatImgSize(item.al.picUrl, 50)" alt="" />
-              <i class="play sprite_table" /> {{ item.name }}
+              <i class="play sprite_table" @click="playMusic(item.id)" /> {{ item.name }}
             </td>
             <td>{{ moment(item.dt).format('mm:ss') }}</td>
             <td class="text-nowrap">{{ item.ar[0].name }}</td>
@@ -48,7 +48,7 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { computed } from 'vue';
+import { computed, watch } from 'vue';
 import { useStore } from 'vuex';
 import { formatImgSize } from '@/utils/format';
 import moment from 'moment';
@@ -58,7 +58,14 @@ const toplist = computed(() => store.state.musiclist.toplist);
 const currentIndex = computed(() => store.state.musiclist.currentIndex);
 const toplistDetail = computed(() => store.state.musiclist.toplist[currentIndex.value]);
 const playlist = computed(() => store.state.musiclist.playlist);
-store.dispatch('getRankingDetailAction', 19723756);
+
+const playMusic = (songId: number) => {
+  store.dispatch('getCurrentSongAction', songId);
+};
+
+watch(toplist, (newValue) => {
+  store.dispatch('getRankingDetailAction', newValue[0].id);
+});
 </script>
 
 <style lang="less" scoped>
@@ -98,7 +105,7 @@ store.dispatch('getRankingDetailAction', 19723756);
 
         th {
           padding-left: 8px;
-          border-right: 2px solid #e8e8e8;
+          border-right: 1px solid #e8e8e8;
         }
 
         .index {
