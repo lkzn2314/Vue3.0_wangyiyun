@@ -1,5 +1,7 @@
+import { ActionContext } from 'vuex';
 import { CHANGE_HOT_PLAYLIST_CATEGORY } from '../mutation-types';
-import { getHotPlaylistCategory } from '@/network/discover';
+import { getHotPlaylistCategory, getAllPlaylist, allPlaylist } from '@/network/discover';
+import { State } from '@popperjs/core';
 
 export default {
   getHotPlaylistAction(context: any) {
@@ -8,6 +10,12 @@ export default {
         // console.log(res);
         context.commit(CHANGE_HOT_PLAYLIST_CATEGORY, res.tags);
       }
+    });
+  },
+
+  getAllPlaylistAction(context: ActionContext<State, any>, params: allPlaylist) {
+    getAllPlaylist(params).then((res: any) => {
+      console.log('allPlaylist', res);
     });
   },
 };

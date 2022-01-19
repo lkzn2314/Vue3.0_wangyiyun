@@ -5,6 +5,7 @@ const routerHistory = createWebHashHistory();
 const LKDiscover = () => import('@/views/discover/Discover.vue');
 const Recommend = () => import('@/views/discover/c-views/recommend/Recommend.vue');
 const Musiclist = () => import('@/views/discover/c-views/musiclist/Musiclist.vue');
+const Playlist = () => import('@/views/discover/c-views/playlist/Playlist.vue');
 
 const router = createRouter({
   history: routerHistory,
@@ -28,6 +29,10 @@ const router = createRouter({
         {
           path: 'musiclist',
           component: Musiclist,
+        },
+        {
+          path: 'playlist',
+          component: Playlist,
         },
       ],
     },
