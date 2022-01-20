@@ -10,7 +10,14 @@
       </div>
       <button>热门</button>
     </div>
-    <div></div>
+
+    <div class="body" v-if="allPlaylist.length">
+      <div class="all-playlist">
+        <div class="item" v-for="item in allPlaylist" :key="item.id">
+          <SongsCover :info="item" infoType="playlist" />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -21,9 +28,12 @@ export default {
 </script>
 
 <script lang="ts" setup>
+import { computed } from 'vue';
 import { useStore } from 'vuex';
+import SongsCover from '@/components/songs-cover/SongsCover.vue';
 const store = useStore();
-store.dispatch('getAllPlaylistAction', { offset: 1, limit: 50, cat: '华语' });
+store.dispatch('getAllPlaylistAction', { offset: 1, limit: 50, cat: '全部' });
+const allPlaylist = computed(() => store.state.playlist.allPlaylist);
 </script>
 
 <style lang="less" scoped>
@@ -83,6 +93,24 @@ store.dispatch('getAllPlaylistAction', { offset: 1, limit: 50, cat: '华语' });
       &:hover {
         cursor: pointer;
         text-decoration: underline;
+      }
+    }
+  }
+
+  .body {
+    position: relative;
+    padding-bottom: 30px;
+
+    .all-playlist {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-top: 10px;
+
+      .item {
+        width: 140px;
+        height: 188px;
+        margin: 0 0 30px 30px;
       }
     }
   }

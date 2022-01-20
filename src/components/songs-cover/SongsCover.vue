@@ -16,6 +16,7 @@
     <div :class="infoType === 'playlist' ? 'cover-bottom text-nowrap' : 'cover-bottom'">
       {{ info.name }}
     </div>
+    <div class="cover-source" v-if="infoType === 'playlist'">by {{ info.creator.nickname }}</div>
   </div>
 </template>
 
@@ -109,6 +110,10 @@ export default {
       cursor: pointer;
       text-decoration: underline;
     }
+  }
+
+  .cover-source {
+    color: #666;
   }
 }
 </style>
