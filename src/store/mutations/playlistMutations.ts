@@ -8,4 +8,12 @@ export default {
   [actionTypes.CHANGE_ALL_PLAYLIST](state: any, allPlaylist: any) {
     state.allPlaylist = allPlaylist;
   },
+
+  [actionTypes.CHANGE_TOTAL](state: any, total: number) {
+    state.total = total;
+  },
+
+  [actionTypes.CHANGE_CURRENT_CAT](state: any, cat: string) {
+    state.cat = cat;
+  },
 };

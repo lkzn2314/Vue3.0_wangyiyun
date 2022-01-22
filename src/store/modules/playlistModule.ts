@@ -5,6 +5,9 @@ const module = {
   state: () => ({
     hotPlaylistCategory: [],
     allPlaylist: [],
+    total: 0,
+    allPlaylistCategory: [],
+    currentCat: '全部',
   }),
   actions: playlistActions,
   mutations: playlistMutations,

@@ -18,6 +18,14 @@
         </div>
       </div>
     </div>
+    <el-pagination
+      v-if="allPlaylist.length"
+      background
+      layout="prev, pager, next"
+      :total="total"
+      :page-size="50"
+      @current-change="pageChangeClick"
+    />
   </div>
 </template>
 
@@ -32,8 +40,14 @@ import { computed } from 'vue';
 import { useStore } from 'vuex';
 import SongsCover from '@/components/songs-cover/SongsCover.vue';
 const store = useStore();
-store.dispatch('getAllPlaylistAction', { offset: 1, limit: 50, cat: '全部' });
+store.dispatch('getAllPlaylistCategoryAction');
+store.dispatch('getAllPlaylistAction', { offset: 1, limit: 50, cat: '华语' });
 const allPlaylist = computed(() => store.state.playlist.allPlaylist);
+const total = computed(() => store.state.playlist.total);
+
+const pageChangeClick = (currentPage: number) => {
+  store.dispatch('getAllPlaylistAction', { offset: currentPage, limit: 50, cat: '华语' });
+};
 </script>
 
 <style lang="less" scoped>
@@ -41,6 +55,7 @@ const allPlaylist = computed(() => store.state.playlist.allPlaylist);
   position: relative;
   padding: 40px 40px 80px 40px;
   background-color: #fff;
+  box-sizing: border-box;
 
   .head {
     display: flex;
@@ -113,6 +128,14 @@ const allPlaylist = computed(() => store.state.playlist.allPlaylist);
         margin: 0 0 30px 30px;
       }
     }
+  }
+
+  .el-pagination {
+    text-align: center;
+  }
+
+  /deep/.el-pagination.is-background .el-pager li:not(.disabled).active {
+    background-color: #c80c0e;
   }
 }
 </style>
