@@ -2,8 +2,8 @@
   <div class="playlistWrapper wrap-v2">
     <div class="head">
       <div class="left">
-        <span>{{ '全部' }}</span>
-        <span class="category">
+        <span>{{ currentCat }}</span>
+        <span class="category" @click="selectCategoryClick">
           选择分类
           <i class="sprite_icon2" />
         </span>
@@ -26,27 +26,29 @@
       :page-size="50"
       @current-change="pageChangeClick"
     />
+    <CategoryPanel v-show="isShowPanel" @selectCategoryClick="selectCategoryClick" />
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  name: 'Playlist',
-};
-</script>
-
 <script lang="ts" setup>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { useStore } from 'vuex';
 import SongsCover from '@/components/songs-cover/SongsCover.vue';
+import CategoryPanel from './children/CategoryPanel.vue';
+const isShowPanel = ref(false);
 const store = useStore();
-store.dispatch('getAllPlaylistCategoryAction');
-store.dispatch('getAllPlaylistAction', { offset: 1, limit: 50, cat: '华语' });
 const allPlaylist = computed(() => store.state.playlist.allPlaylist);
 const total = computed(() => store.state.playlist.total);
+const currentCat = computed(() => store.state.playlist.currentCat);
+store.dispatch('getAllPlaylistCategoryAction');
+store.dispatch('getAllPlaylistAction', { offset: 1, limit: 50, cat: currentCat });
+
+const selectCategoryClick = () => {
+  isShowPanel.value = !isShowPanel.value;
+};
 
 const pageChangeClick = (currentPage: number) => {
-  store.dispatch('getAllPlaylistAction', { offset: currentPage, limit: 50, cat: '华语' });
+  store.dispatch('getAllPlaylistAction', { offset: currentPage, limit: 50, cat: currentCat });
 };
 </script>
 

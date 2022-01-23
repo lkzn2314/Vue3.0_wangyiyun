@@ -4,9 +4,9 @@ import playlistMutations from '../mutations/playlistMutations';
 const module = {
   state: () => ({
     hotPlaylistCategory: [],
+    allPlaylistCategory: [],
     allPlaylist: [],
     total: 0,
-    allPlaylistCategory: [],
     currentCat: '全部',
   }),
   actions: playlistActions,

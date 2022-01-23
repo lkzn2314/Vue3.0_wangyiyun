@@ -5,6 +5,10 @@ export default {
     state.hotPlaylistCategory = hotPlaylistCategory;
   },
 
+  [actionTypes.CHANGE_ALL_PLAYLIST_CATEGORY](state: any, allPlaylistCategory: any) {
+    state.allPlaylistCategory = allPlaylistCategory;
+  },
+
   [actionTypes.CHANGE_ALL_PLAYLIST](state: any, allPlaylist: any) {
     state.allPlaylist = allPlaylist;
   },
@@ -14,6 +18,6 @@ export default {
   },
 
   [actionTypes.CHANGE_CURRENT_CAT](state: any, cat: string) {
-    state.cat = cat;
+    state.currentCat = cat;
   },
 };

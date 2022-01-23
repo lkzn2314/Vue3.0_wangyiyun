@@ -34,7 +34,20 @@ export default {
 
   getAllPlaylistCategoryAction(context: ActionContext<State, any>) {
     getAllPlaylistCategory().then((res: any) => {
-      console.log(111, res);
+      // console.log('category', res);
+      if (res.code === 200) {
+        const categories: { [key: string]: any } = Object.entries(res.categories).map(
+          ([key, value]) => ({
+            name: value,
+            subs: [],
+          }),
+        );
+        for (const item of res.sub) {
+          categories[item.category].subs.push(item);
+        }
+        // console.log(222, categories);
+        context.commit(actionTypes.CHANGE_ALL_PLAYLIST_CATEGORY, categories);
+      }
     });
   },
 };
